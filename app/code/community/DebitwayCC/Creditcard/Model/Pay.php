@@ -190,7 +190,7 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
     private function callApi(Varien_Object $payment, $amount, $type = "")
     {
 
-        
+       
         $identifier = trim(Mage::getStoreConfig('payment/pay/identifier'));
         $vericode =  trim(Mage::getStoreConfig('payment/pay/vericode'));
         $website_unique_id =  trim(Mage::getStoreConfig('payment/pay/website_unique_id'));
@@ -200,7 +200,7 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
        
         if ($amount > 0) {
 
-           
+            
 			$order            = $payment->getOrder();
 		    $cc_number        = $payment->getCcNumber();
 			$expirationMonth   = $payment->getCcExpMonth();
@@ -210,6 +210,7 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
 		    $street           = $billingAddress->getStreet(1);
 		    $postcode         = $billingAddress->getPostcode();
 		    $cc_security_code = $payment->getCcCid();
+            $ip_address       = $order->getRemoteIp();
           
             if(strlen($expirationMonth)==1){
                 $expirationMonth = '0'.$expirationMonth;
@@ -241,7 +242,8 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
                 $item_name_total .=$item_total;
 
             }
-            $grandTotal1 = number_format($_order->getBaseGrandTotal(), 2, '.', '');
+            
+            $grandTotal1 = number_format($order->getBaseGrandTotal(), 2, '.', '');
 
             $currency_code = $order->getBaseCurrencyCode();
             $current_currency_code = $order->getDefaultCurrencyCode();
@@ -396,6 +398,7 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
                     'shipping_zip_or_postal_code'=>$shipping_zip_or_postal_code,
                     'shipping_country'=>$shipping_country,
                     'currency'=>$currency_code,
+                    'ip_address'=>$ip_address,
                     'action'=>'payment'
                 );
                
@@ -428,7 +431,8 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
 
             if($type == "Authorization"){
 
-            
+               
+                
                 $ch = curl_init();
                
                 curl_setopt($ch, CURLOPT_URL,$url);
@@ -464,19 +468,25 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
                     'shipping_zip_or_postal_code'=>$shipping_zip_or_postal_code,
                     'shipping_country'=>$shipping_country,
                     'currency'=>$currency_code,
+                    'ip_address'=>$ip_address,
                     'action'=>'authorized payment'
                 );
+
+               
                
                 $fields_string = http_build_query($post_data);
 
                 curl_setopt ($ch, CURLOPT_POSTFIELDS, $fields_string);
                 curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);              
+               
                 $result = curl_exec($ch);
 
+               
                 curl_close($ch);
-                // Mage::throwException($result);
+
+               
 
                 $approved = false;
                 $output = $this->get_value_from_response($result,'result');
