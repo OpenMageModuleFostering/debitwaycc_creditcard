@@ -254,17 +254,26 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
             $email = $order->getCustomerEmail();
 
             $billing_address = $billingAddress->getStreet1();
-            $billing_city = $billingAddress->getCity();           
-            $billing_state_or_province = $billingAddress->getRegionCode();
-            $billing_country = $billingAddress->getCountry();
+            $billing_city = $billingAddress->getCity();    
+            $billing_country = $billingAddress->getCountry();  
+            if($billing_country == "CA" || $billing_country == "US"){
+                $billing_state_or_province = $billingAddress->getRegionCode();
+            }else{
+                $billing_state_or_province = $billingAddress->getRegion();
+            }   
+                      
             $billing_zip_or_postal_code = $billingAddress->getPostcode();
             $bphone = $billingAddress->getTelephone();
 
 
             $shipping_address = $shippingAddress->getStreet1();
             $shipping_city = $shippingAddress->getCity();           
-            $shipping_state_or_province = $shippingAddress->getRegionCode();
             $shipping_country = $shippingAddress->getCountry();
+            if($shipping_country == "CA" || $shipping_country == "US"){
+                $shipping_state_or_province = $shippingAddress->getRegionCode();
+            }else{
+                $shipping_state_or_province = $shippingAddress->getRegion();
+            }
             $shipping_zip_or_postal_code = $shippingAddress->getPostcode();
             $return_url = Mage::getBaseUrl (Mage_Core_Model_Store::URL_TYPE_WEB); 
             $return_url .= 'pay/payment/response';
