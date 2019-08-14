@@ -3,10 +3,10 @@
     "type": "magento-module",
     "license": "Open-Software-License",
     "homepage": "",
-    "description": "This plugin is used to support Debitway Credit card integration.",
+    "description": "This is an extension which can be used for Credit Card Payment Method with DebitWay. It adds 'DebitWay Credit Card Payment Module' as a payment method during checkout. ",
     "authors": [
     {
-        "name": "ramya",
+        "name": "Ramya",
         "email": "tech@debitway.ca"
     }
 ],

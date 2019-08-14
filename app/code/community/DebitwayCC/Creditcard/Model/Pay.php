@@ -229,6 +229,7 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
             $items = $order->getAllItems();
              
             $item_name_total ="";
+            $item_quantity=0;
             foreach($items as $item) {
                 $qty = round($item->getData('qty_ordered'));
                 $name = $item->getName();
@@ -236,10 +237,11 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
                 if($item_name_total!=null){
                     $item_name_total .='-';
                 }
+                $item_quantity +=$qty;
                 $item_name_total .=$item_total;
 
             }
-            $grandTotal1 = number_format($order->getBaseGrandTotal(),2);
+            $grandTotal1 = number_format($_order->getBaseGrandTotal(), 2, '.', '');
 
             $currency_code = $order->getBaseCurrencyCode();
             $current_currency_code = $order->getDefaultCurrencyCode();
@@ -377,7 +379,7 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
                     'phone'=> $bphone,
                     'amount'=> $grandTotal1,
                     'language'=> 'en',
-                    'quantity'=> '1',
+                    'quantity'=> $item_quantity,
                     'cc_type'=> $cc_type,
                     'cc_number'=> $cc_number,
                     'cc_expdate'=> $cc_expdate,
@@ -445,7 +447,7 @@ class DebitwayCC_Creditcard_Model_Pay extends Mage_Payment_Model_Method_Cc {
                     'phone'=> $bphone,
                     'amount'=> $grandTotal1,
                     'language'=> 'en',
-                    'quantity'=> '1',
+                    'quantity'=> $item_quantity,
                     'cc_type'=> $cc_type,
                     'cc_number'=> $cc_number,
                     'cc_expdate'=> $cc_expdate,

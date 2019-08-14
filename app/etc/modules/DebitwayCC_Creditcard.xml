@@ -4,6 +4,9 @@
         <DebitwayCC_Creditcard>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Mage_Payment />
+            </depends>
         </DebitwayCC_Creditcard>
     </modules>
 </config> 
