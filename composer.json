@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/DebitwayCC_Creditcard",
+    "type": "magento-module",
+    "license": "Open-Software-License",
+    "homepage": "",
+    "description": "This plugin is used to support Debitway Credit card integration.",
+    "authors": [
+    {
+        "name": "ramya",
+        "email": "tech@debitway.ca"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

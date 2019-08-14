@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+    <name>DebitwayCC_Creditcard</name>
+    <version>2.0.0</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">Open Software License</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>This plugin is used to support Debitway Credit card integration.</summary>
+    <description>This plug in incorporates the DebitWay 	Credit Card Payment Processing.&#xD;
+&#xD;
+The information is collected by the user and details are send to Debitway. Based on the response from Debitway, the transaction is either saved or not saved. &#xD;
+</description>
+    <notes>The Base currency of the magento should be same as the Currency with which merchant account is processing in Debitway</notes>
+    <authors><author><name>ramya</name><user>tech4</user><email>tech@debitway.ca</email></author></authors>
+    <date>2015-03-25</date>
+    <time>19:52:56</time>
+    <contents><target name="magecommunity"><dir name="DebitwayCC"><dir name="Creditcard"><dir name="Block"><dir name="Form"><file name="Pay.php" hash="d4f3ef8fab1defffee9fb2f5e925ad77"/></dir><dir name="Info"><file name="Pay.php" hash="38f5fd149883267bee345d98abedfb98"/></dir></dir><dir name="Helper"><file name="Data.php" hash="fa1e42e8278b9a11dd4c3c86cbc62c2f"/></dir><dir name="Model"><file name="Pay.php" hash="dfce333207f24f27390b0a078c30beeb"/><dir name="Source"><file name="Action.php" hash="bf50491a440da1fb423f250c11e446ea"/></dir></dir><dir name="controllers"><file name="IndexController.php" hash="9a9b8a5bfbd60699499f73a1497c33f0"/></dir><dir name="etc"><file name="config.xml" hash="dfb34b49370888933ab399ec3d54a532"/><file name="system.xml" hash="56360152b744d2d72d5609f9af154a42"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="DebitwayCC_Creditcard.xml" hash="81024901b4eda192c2adff48ea676740"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php><package><name>Mage_Core_Modules</name><channel>community</channel><min>1.6.0.0</min><max>1.7</max></package><extension><name>gd</name><min>2.0.28</min><max>3.0</max></extension></required></dependencies>
+</package>
