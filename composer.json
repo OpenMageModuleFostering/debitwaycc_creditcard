@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/DebitwayCC_Creditcard",
+    "name": "OpenMageModuleFostering\/DebitwayCC_Creditcard",
     "type": "magento-module",
     "license": "Open-Software-License-(OSL)",
     "homepage": "",
     "description": "This is an extension which can be used for Credit Card Payment Method with DebitWay. It adds 'DebitWay Credit Card Payment Module' as a payment method during checkout.",
     "authors": [
-    {
-        "name": "ramya",
-        "email": "ramya@debitway.ca"
-    }
-],
+        {
+            "name": "ramya",
+            "email": "ramya@debitway.ca"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
